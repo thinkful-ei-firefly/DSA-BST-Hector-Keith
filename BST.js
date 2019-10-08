@@ -92,39 +92,64 @@ class BinarySearchTree {
     return this.left._findMin();
   }
 
-  print(){
-    console.log(this.key)
-    if(this.left){
-      this.left.print()
+  print() {
+    console.log(this.key);
+    if (this.left) {
+      this.left.print();
     }
-    if(this.right){
-      this.right.print()
+    if (this.right) {
+      this.right.print();
     }
   }
 
-  tree(t){
-    if(!t) return 0
-    return this.tree(t.left) + t.value + this.tree(t.right)
+  tree(t) {
+    if (!t) return 0;
+    return this.tree(t.left) + t.value + this.tree(t.right);
   }
 
-  height(){
-    let l = 0
-    let r = 0
-    if(this.left){
-      l = this.left.height()
+  height() {
+    let l = 0;
+    let r = 0;
+    if (this.left) {
+      l = this.left.height();
     }
-    if(this.right){
-      r = this.right.height()
+    if (this.right) {
+      r = this.right.height();
     }
-    if(l >= r && this.left){
-      return 1 + l
+    if (l >= r && this.left) {
+      return 1 + l;
     } else if (r > l && this.right) {
-      return 1 + r
+      return 1 + r;
     } else {
-      return 0
+      return 1;
     }
+  }
+
+  isItABST() {
+    if (this.left) {
+      if (this.left.value > this.value) {
+        return false;
+      } else return this.left.isItABST();
+    }
+    if (this.right) {
+      if (this.right.value < this.value) {
+        return false;
+      } else return this.right.isItABST();
+    }
+    return true;
+  }
+
+  thirdLargest() {
+    if (this.height() < 2) {
+      return null;
+    } else if (this.height() < 3) {
+      if (this.left && this.right) {
+        return this.left.value;
+      } else return null;
+    } else if (this.height() > 3) {
+      return this.right.thirdLargest();
+    } else return this.value;
   }
 }
 
-
-module.exports = BinarySearchTree
+module.exports = BinarySearchTree;
