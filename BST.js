@@ -13,7 +13,7 @@ class BinarySearchTree {
       this.value = value;
     } else if (key < this.key) {
       if (this.left == null) {
-        this, (left = new BinarySearchTree(key, value, this));
+        this.left = new BinarySearchTree(key, value, this);
       } else {
         this.left.insert(key, value);
       }
@@ -91,4 +91,40 @@ class BinarySearchTree {
     }
     return this.left._findMin();
   }
+
+  print(){
+    console.log(this.key)
+    if(this.left){
+      this.left.print()
+    }
+    if(this.right){
+      this.right.print()
+    }
+  }
+
+  tree(t){
+    if(!t) return 0
+    return this.tree(t.left) + t.value + this.tree(t.right)
+  }
+
+  height(){
+    let l = 0
+    let r = 0
+    if(this.left){
+      l = this.left.height()
+    }
+    if(this.right){
+      r = this.right.height()
+    }
+    if(l >= r && this.left){
+      return 1 + l
+    } else if (r > l && this.right) {
+      return 1 + r
+    } else {
+      return 0
+    }
+  }
 }
+
+
+module.exports = BinarySearchTree
