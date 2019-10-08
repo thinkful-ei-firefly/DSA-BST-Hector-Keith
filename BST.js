@@ -152,27 +152,24 @@ class BinarySearchTree {
   }
 
   balanced() {
-    if (!this.left && !this.right){
-      return true
+    if (!this.left && !this.right) {
+      return true;
     }
-    if(this.left && !this.right){
-      if(this.left.right || this.left.left){
-        return false
-      } else 
-        this.left.balanced()
+    if (this.left && !this.right) {
+      if (this.left.right || this.left.left) {
+        return false;
+      } else this.left.balanced();
     }
-    if(this.right && !this.left){
-      if(this.right.right || this.right.left){
-        return false
-      } else 
-        this.right.balanced()
+    if (this.right && !this.left) {
+      if (this.right.right || this.right.left) {
+        return false;
+      } else this.right.balanced();
     }
-    if(this.left && this.right){
-      return this.right.balanced() * this.left.balanced()
-      
+    if (this.left && this.right) {
+      return this.right.balanced() * this.left.balanced();
     }
 
-    return true
+    return true;
   }
 }
 
